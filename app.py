@@ -174,13 +174,13 @@ def preferences():
                 except ValueError:
                     return apology("invalid inches")
         elif info["height_in"]:
-            # Otherwise, check that inputted height_in is an integer between 0 and 11
+            # If user only inputs inches, assume 0 feet
+            info["height_feet"] = 0
+            # Check that inputted height_in is an integer between 0 and 11
             try: 
                 info["height_in"] = int(info["height_in"])
                 if info["height_in"] < 0 or info["height_in"] > 11:
                     return apology("invalid inches")
-                # If user only inputs inches, assume 0 feet
-                info["height_feet"] = 0
             except ValueError:
                 return apology("invalid inches")
         if info["weight"]:
@@ -233,8 +233,8 @@ def preferences():
 
         # Update preferences database with existing info
         for key in info:
-            # Need to explicitly compare against None because some fields (e.g. height_in) may be 0 (registered as false)
-            if info[key] is not None:
+            # Need to account for the fact that some fields (e.g. height_in) may be 0 (registered as false by default)
+            if info[key] or info[key] == 0:
                 db.execute("UPDATE preferences SET ? = ? WHERE user_id = ?", key, info[key], session["user_id"])
 
         return redirect("/")

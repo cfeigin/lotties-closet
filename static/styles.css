@@ -15,6 +15,18 @@ h1
     margin: 7vh auto;
 }
 
+h3
+{
+    color: #460263;
+}
+
+hr
+{
+    border: 2px solid #460263;
+    width: 50%;
+    margin: 6vh auto;
+}
+
 p
 {
     font-family: helvetica;
@@ -70,8 +82,19 @@ footer
 
 .btn
 {
-    background-color: #7d009a;
+    background-color: #460263;
     border-radius: 20px;
+    border: 0;
+    height: 40px;
+    padding: 0 20px;
+}
+
+/* History page */
+.info
+{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
 }
 
 /* Size for brand */

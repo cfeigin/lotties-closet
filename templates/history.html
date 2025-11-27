@@ -6,5 +6,65 @@
 
 {% block main %}
     <h1>Here's what we know about you, {{ name }}.</h1>
-    <p>{{ entry }}</p>
+    <hr>
+    <div class="info">
+        <h3>Gender: </h3> 
+        {% if entry["gender"] %}
+            {{ entry["gender"].capitalize() }}
+        {% else %}
+            Not specified
+        {% endif %}
+    </div>
+    <div class="info">
+        <h3>Height: </h3> 
+        <!-- height_ft and height_in will be specified/unspecified together, as per /preferences in app.py -->
+        {% if entry["height_feet"] is not none %}
+            {{ entry["height_feet"] }}' {{ entry["height_in"] }}" 
+        {% else %}
+            Not specified
+        {% endif %}
+    </div>
+    <div class="info">
+        <h3>Weight: </h3> 
+        {% if entry["weight"] is not none %}
+            {{ entry["weight"] }}
+        {% else %}
+            Not specified
+        {% endif %}
+    </div>
+    <div class="info">
+        <h3>Top Size: </h3> 
+        {% if entry["top_size"] %}
+            {{ entry["top_size"].upper() }}
+        {% else %}
+            Not specified
+        {% endif %}
+    </div>
+    <div class="info">
+        <h3>Bottom Size: </h3> 
+        {% if entry["bottom_size"] %}
+            {{ entry["bottom_size"].upper() }}
+        {% else %}
+            Not specified
+        {% endif %}
+    </div>
+    <div class="info">
+        <h3>Dress Size: </h3> 
+        {% if entry["dress_size"] %}
+            {{ entry["dress_size"].upper() }}
+        {% else %}
+            Not specified
+        {% endif %}
+    </div>
+    <div class="info">
+        <h3>Shoe Size: </h3> 
+        <!-- shoe_size and shoe_gender will be specified/unspecified together, as per /preferences in app.py -->
+        {% if entry["shoe_size"] %}
+            {{ entry["shoe_size"] }} {{ entry["shoe_gender"][0].upper() }}
+        {% else %}
+            Not specified
+        {% endif %}
+    </div>
+    <button class="btn btn-primary" onclick="location.href='/preferences'">Update</button>
+    
 {% endblock %}
