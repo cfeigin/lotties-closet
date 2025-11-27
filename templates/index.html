@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <h1>What would you like today, {{ name }}?</h1>
+    <form action="/" method="post">
+        <div class="search">
+            <input autocomplete="off" class="form-control bubble" name="article" placeholder="Article (e.g. tank top, skirt)" type="text">
+            <input autocomplete="off" class="form-control bubble" name="color" placeholder="Color (e.g. crimson, lavender)" type="text">
+            <input autocomplete="off" class="form-control bubble" name="pattern" placeholder="Pattern (e.g. leopard print)" type="text">
+            <input autocomplete="off" class="form-control bubble" name="material" placeholder="Material (e.g. leather, cotton)" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+{% endblock %}

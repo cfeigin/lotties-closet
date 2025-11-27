@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Update Preferences
+{% endblock %}
+
+{% block main %}
+    <h1>Tell us a little about yourself.</h1>
+    <form action="/preferences" method="post">
+        <div class="questions">
+            <select class="form-select bubble" name="gender">
+                <option disabled selected>Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+        <div class="questions">
+            <input autocomplete="off" class="form-control bubble" min="0" name="height-feet" placeholder="Height (ft)" type="number">
+            <input autocomplete="off" class="form-control bubble" min="0" max="11" name="height-inches" placeholder="Height (in)" type="number">
+        </div>
+        <div class="questions">
+            <input autocomplete="off" class="form-control bubble" min="0" name="weight" placeholder="Weight (lb)" type="number">
+        </div>
+        <div class="questions">
+            <select class="form-select bubble" name="top-size">
+                <option disabled selected>Top Size</option>
+                <option value="xxs">XXS</option>
+                <option value="xs">XS</option>
+                <option value="s">S</option>
+                <option value="m">M</option>
+                <option value="l">L</option>
+                <option value="xl">XL</option>
+                <option value="xxl">XXL</option>
+            </select>
+        </div>
+        <div class="questions">
+            <select class="form-select bubble" name="bottom-size">
+                <option disabled selected>Bottom Size</option>
+                <option value="xxs">XXS</option>
+                <option value="xs">XS</option>
+                <option value="s">S</option>
+                <option value="m">M</option>
+                <option value="l">L</option>
+                <option value="xl">XL</option>
+                <option value="xxl">XXL</option>
+            </select>
+        </div>
+        <div class="questions">
+            <select class="form-select bubble" name="dress-size">
+                <option disabled selected>Dress Size (if applicable)</option>
+                <option value="xxs">XXS</option>
+                <option value="xs">XS</option>
+                <option value="s">S</option>
+                <option value="m">M</option>
+                <option value="l">L</option>
+                <option value="xl">XL</option>
+                <option value="xxl">XXL</option>
+            </select>
+        </div>
+        <!-- TODO: add measurements -->
+        <div class="questions">
+            <!-- TODO: max shoe size? -->
+            <input autocomplete="off" class="form-control bubble" min="1" step="0.5" name="shoe-size" placeholder="Shoe Size" type="number">
+            <select class="form-select bubble" name="shoe-gender">
+                <option disabled selected>Gender</option>
+                <option value="mens">Men's</option>
+                <option value="womens">Women's</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Update Preferences</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <h1>So nice to meet you!</h1>
+    <form action="/register" method="post">
+        <div class="questions">
+            <input autocomplete="off" autofocus class="form-control bubble" name="name" placeholder="Name" type="text">
+        </div>
+        <div class="questions">
+            <input autocomplete="off" autofocus class="form-control bubble" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="questions">
+            <input class="form-control bubble" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="questions">
+            <input class="form-control bubble" name="confirmation" placeholder="Password (again)" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <h1>Welcome to Lottie's Closet!</h1>
+    <p>Please log in to continue. If you're new here, hit the "register" button to experience online shopping like never before!</p>
+    <form action="/login" method="post">
+        <div class="questions">
+            <input autocomplete="off" autofocus class="form-control bubble" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="questions">
+            <input class="form-control bubble" name="password" placeholder="Password" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Log In</button>
+    </form>
+{% endblock %}
