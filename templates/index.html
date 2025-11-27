@@ -8,11 +8,8 @@
     <h1>What would you like today, {{ name }}?</h1>
     <form action="/" method="post">
         <div class="search">
-            <input autocomplete="off" class="form-control bubble" name="article" placeholder="Article (e.g. tank top, skirt)" type="text">
-            <input autocomplete="off" class="form-control bubble" name="color" placeholder="Color (e.g. crimson, lavender)" type="text">
-            <input autocomplete="off" class="form-control bubble" name="pattern" placeholder="Pattern (e.g. leopard print)" type="text">
-            <input autocomplete="off" class="form-control bubble" name="material" placeholder="Material (e.g. leather, cotton)" type="text">
+            <input autocomplete="off" class="form-control bubble" id="search-bar" name="article" placeholder="Type your request here (e.g. &quot;cheetah print mini skirt&quot;)" type="text">
+            <button class="btn btn-primary" type="submit">Search</button>
         </div>
-        <button class="btn btn-primary" type="submit">Search</button>
     </form>
 {% endblock %}
