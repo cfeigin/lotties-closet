@@ -8,8 +8,22 @@
     <h1>What would you like today, {{ name }}?</h1>
     <form action="/" method="post">
         <div class="search">
-            <input autocomplete="off" class="form-control bubble" id="search-bar" name="article" placeholder="Type your request here (e.g. &quot;cheetah print mini skirt&quot;)" type="text">
+            <input autocomplete="off" class="form-control bubble" id="search-bar" name="query" placeholder="Type your request here (e.g. &quot;cheetah print mini skirt&quot;)" type="text">
             <button class="btn btn-primary" type="submit">Search</button>
         </div>
+        {% if results %}
+            <h2>Here are your results:</h2>
+            <div class="results">
+                {% for item in results %}
+                    <div class="item">
+                        <a href="{{ item.link }}" target="_blank">
+                            <img src="{{ item.thumbnail }}" alt="{{ item.title }}">
+                            <h3>{{ item.title }}</h3>
+                            <p>Price: {{ item.price }}</p>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     </form>
 {% endblock %}

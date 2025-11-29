@@ -3,8 +3,9 @@
 import os
 
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import Flask, jsonify, redirect, render_template, request, session
 from flask_session import Session
+from serpapi.google_search import GoogleSearch
 from werkzeug.security import check_password_hash, generate_password_hash
 # TODO: delete?
 from helpers import apology, login_required, usd
@@ -25,6 +26,8 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///closet.db")
 
+# Save API key as environment variable
+SERP_API_KEY = os.getenv("SERP_API_KEY")
 
 @app.after_request
 def after_request(response):
@@ -35,12 +38,41 @@ def after_request(response):
     return response
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
     """Show home page"""
-    # TODO: POST method
-    return render_template("index.html", name=db.execute("SELECT name FROM users WHERE id = ?", session["user_id"])[0]["name"])
+    # Will run if user makes a search
+    if request.method == "POST":
+        # Get search query from form
+        query = request.form.get("query")
+        # Ensure user inputted a search query
+        if not query:
+            return apology("must provide search query")
+
+        # Use SerpAPI to search Google for clothing items matching query
+        params = {
+            # Scrape Google Shopping for results
+            "engine": "google_shopping",
+            "q": query,
+            "api_key": SERP_API_KEY
+        }
+
+        # Make AI client request and get results
+        try:
+            search = GoogleSearch(params)
+            # Limit to first 20 results
+            results = search.get_dict().get("shopping_results", [])[:20]
+        # Handle any errors that may arise
+        except Exception as e:
+            apology(f"error fetching results: {e}")
+
+        return render_template("index.html", name=db.execute("SELECT name FROM users WHERE id = ?", session["user_id"])[0]["name"], results=results)
+
+
+    # Will run is user navigates to home page
+    else:
+        return render_template("index.html", name=db.execute("SELECT name FROM users WHERE id = ?", session["user_id"])[0]["name"], results=None)
 
 
 @app.route("/login", methods=["GET", "POST"])
