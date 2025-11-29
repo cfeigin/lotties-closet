@@ -12,18 +12,42 @@
             <button class="btn btn-primary" type="submit">Search</button>
         </div>
         {% if results %}
-            <h2>Here are your results:</h2>
-            <div class="results">
-                {% for item in results %}
-                    <div class="item">
-                        <a href="{{ item.link }}" target="_blank">
-                            <img src="{{ item.thumbnail }}" alt="{{ item.title }}">
-                            <h3>{{ item.title }}</h3>
-                            <p>Price: {{ item.price }}</p>
+            <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+            {% for item in results %}
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+
+                    {% if item.thumbnail %}
+                    <img src="{{ item.thumbnail }}" class="card-img-top" alt="Product image">
+                    {% endif %}
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.title }}</h5>
+
+                        {% if item.price %}
+                        <p class="card-text fw-bold">{{ item.price }}</p>
+                        {% endif %}
+
+                        {% if item.source %}
+                        <p class="card-text text-muted small">{{ item.source }}</p>
+                        {% endif %}
+                    </div>
+
+                    {% set link = item.link or item.product_link or item.source_link %}
+                    {% if link %}
+                    <div class="card-footer bg-transparent">
+                        <!-- "_blank" opens link in new tab -->
+                        <a href="{{ link }}" target="_blank" class="btn btn-primary w-100">
+                            View Item
                         </a>
                     </div>
-                {% endfor %}
+                    {% endif %}
+
+                </div>
             </div>
+            {% endfor %}
+
+        </div>
         {% endif %}
     </form>
 {% endblock %}

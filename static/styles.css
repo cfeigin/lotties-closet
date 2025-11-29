@@ -87,6 +87,7 @@ footer
     border: 0;
     height: 40px;
     padding: 0 20px;
+    text-align: center;
 }
 
 /* History page */
@@ -101,6 +102,14 @@ footer
 nav .navbar-brand
 {
     font-size: xx-large;
+}
+
+/* Search results cards */
+.card-img-top
+{
+    height: 300px;
+    object-fit: cover;
+    width: 100%;
 }
 
 /* Colors for brand */

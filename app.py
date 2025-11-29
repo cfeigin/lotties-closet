@@ -62,7 +62,7 @@ def index():
         try:
             search = GoogleSearch(params)
             # Limit to first 20 results
-            results = search.get_dict().get("shopping_results", [])[:20]
+            results = search.get_dict().get("shopping_results", [])[:21]
         # Handle any errors that may arise
         except Exception as e:
             apology(f"error fetching results: {e}")
