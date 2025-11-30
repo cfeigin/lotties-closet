@@ -15,6 +15,18 @@ h1
     margin: 7vh auto;
 }
 
+h3
+{
+    color: #460263;
+}
+
+hr
+{
+    border: 2px solid #460263;
+    width: 50%;
+    margin: 6vh auto;
+}
+
 p
 {
     font-family: helvetica;
@@ -36,11 +48,21 @@ footer
 
 
 /* Visuals for forms (login, preferences, search, etc.) */
+.bubble
+{
+    margin: 0;
+    border-radius: 25px;
+    height: 50px;
+    width: 250px;
+    text-align: center;
+}
+
 .search
 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     gap: 30px;
     margin: 14vh 0;
 }
@@ -54,19 +76,30 @@ footer
     margin: 5vh 0;
 }
 
-.bubble
+#search-bar
 {
-    margin: 0;
-    border-radius: 25px;
-    height: 50px;
-    width: 250px;
-    text-align: center;
+    width: 80%;
 }
 
 .btn
 {
-    background-color: #7d009a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #460263;
     border-radius: 20px;
+    border: 0;
+    height: 40px;
+    padding: 0 20px;
+
+}
+
+/* History page */
+.info
+{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
 }
 
 /* Size for brand */
@@ -74,6 +107,26 @@ nav .navbar-brand
 {
     font-size: xx-large;
 }
+
+/* Search results cards */
+.card-img-top
+{
+    height: 300px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.card {
+    padding: 0; 
+}
+
+.card-body {
+    padding: 0.5rem;  
+}
+
+.card-footer {
+    padding: 0.4rem;  
+}  
 
 /* Colors for brand */
 nav .navbar-brand .blue
