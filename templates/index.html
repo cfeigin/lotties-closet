@@ -33,6 +33,7 @@
                         {% endif %}
                     </div>
 
+                    <!-- Ensures that there is some kind of link (could be any of these) -->
                     {% set link = item.link or item.product_link or item.source_link %}
                     {% if link %}
                     <div class="card-footer bg-transparent">

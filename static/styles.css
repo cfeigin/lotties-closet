@@ -62,6 +62,7 @@ footer
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     gap: 30px;
     margin: 14vh 0;
 }
@@ -82,12 +83,15 @@ footer
 
 .btn
 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #460263;
     border-radius: 20px;
     border: 0;
     height: 40px;
     padding: 0 20px;
-    text-align: center;
+
 }
 
 /* History page */
@@ -111,6 +115,18 @@ nav .navbar-brand
     object-fit: cover;
     width: 100%;
 }
+
+.card {
+    padding: 0; 
+}
+
+.card-body {
+    padding: 0.5rem;  
+}
+
+.card-footer {
+    padding: 0.4rem;  
+}  
 
 /* Colors for brand */
 nav .navbar-brand .blue
