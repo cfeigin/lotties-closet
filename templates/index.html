@@ -11,45 +11,47 @@
             <input autocomplete="off" class="form-control bubble" id="search-bar" name="query" placeholder="Type your request here (e.g. &quot;cheetah print mini skirt&quot;)" type="text">
             <button class="btn btn-primary" type="submit">Search</button>
         </div>
-        {% if results %}
-            <h2>Results for "{{ query }}"</h2>
-            <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
-            {% for item in results %}
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-
-                    {% if item.thumbnail %}
-                    <img src="{{ item.thumbnail }}" class="card-img-top" alt="Product image">
-                    {% endif %}
-
-                    <div class="card-body">
-                        <h5 class="card-title">{{ item.title }}</h5>
-
-                        {% if item.price %}
-                        <p class="card-text fw-bold">{{ item.price }}</p>
-                        {% endif %}
-
-                        {% if item.source %}
-                        <p class="card-text text-muted small">{{ item.source }}</p>
-                        {% endif %}
-                    </div>
-
-                    <!-- Ensures that there is some kind of link (could be any of these) -->
-                    {% set link = item.link or item.product_link or item.source_link %}
-                    {% if link %}
-                    <div class="card-footer bg-transparent">
-                        <!-- "_blank" opens link in new tab -->
-                        <a href="{{ link }}" target="_blank" class="btn btn-primary w-100">
-                            View Item
-                        </a>
-                    </div>
-                    {% endif %}
-
-                </div>
-            </div>
-            {% endfor %}
-
-        </div>
-        {% endif %}
     </form>
+
+    <!-- If there are results, display them -->
+    {% if results %}
+        <h4>Results for "{{ query }}"</h4>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+        {% for item in results %}
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+
+                {% if item.thumbnail %}
+                <img src="{{ item.thumbnail }}" class="card-img-top" alt="Product image">
+                {% endif %}
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.title }}</h5>
+
+                    {% if item.price %}
+                    <p class="card-text fw-bold">{{ item.price }}</p>
+                    {% endif %}
+
+                    {% if item.source %}
+                    <p class="card-text text-muted small">{{ item.source }}</p>
+                    {% endif %}
+                </div>
+
+                <!-- Ensures that there is some kind of link (could be any of these) -->
+                {% set link = item.link or item.product_link or item.source_link %}
+                {% if link %}
+                <div class="card-footer bg-transparent">
+                    <!-- "_blank" opens link in new tab -->
+                    <a href="{{ link }}" target="_blank" class="btn btn-primary btn-link w-100">
+                        View Item
+                    </a>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+    {% endif %}
 {% endblock %}

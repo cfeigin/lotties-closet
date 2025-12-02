@@ -63,8 +63,13 @@ def index():
         try:
             search = GoogleSearch(params)
             # Limit to first 21 results
-            # TODO: implement pagination and don't hard code
-            results = search.get_dict().get("shopping_results", [])[:21]
+            # TODO: implement pagination and don't hard code 21
+            results = search.get_dict().get("shopping_results", [])
+            num_results = len(results)
+            if (num_results < 21):
+                results = results[:num_results]
+            else: 
+                results = results[:21]
         # Handle any errors that may arise
         except Exception as e:
             apology("error fetching results")

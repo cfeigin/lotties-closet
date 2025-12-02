@@ -20,6 +20,11 @@ h3
     color: #460263;
 }
 
+h4
+{
+    color: #460263;
+}
+
 hr
 {
     border: 2px solid #460263;
@@ -101,12 +106,6 @@ footer
     margin: 10px 0;
 }
 
-/* Size for brand */
-nav .navbar-brand
-{
-    font-size: xx-large;
-}
-
 /* Search results cards aesthetics */
 .card-img-top
 {
@@ -115,23 +114,41 @@ nav .navbar-brand
     width: 100%;
 }
 
-.card-body {
+.card-body 
+{
     flex-grow: 1;
     display: flex;
     flex-direction: column;
 } 
 
-.card-title {
+.card-title 
+{
     flex-grow: 1;        /* Makes title area expand evenly */
     overflow: hidden;    /* Prevents text spillover */
     max-height: 2.4em;  /* Limits to 2 lines */
     text-overflow: ellipsis; /* Adds "..." for overflowed text */
 }
 
-.card-text {
+.card-text 
+{
     margin-top: 1rem;
     margin-bottom: 1rem;
 } 
+
+.btn-link
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
 
 /* Colors for brand */
 nav .navbar-brand .blue
