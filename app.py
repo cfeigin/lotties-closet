@@ -8,14 +8,10 @@ from flask_session import Session
 from serpapi.google_search import GoogleSearch
 from werkzeug.security import check_password_hash, generate_password_hash
 # TODO: delete?
-from helpers import apology, login_required, usd
+from helpers import apology, login_required
 
 # Configure application
 app = Flask(__name__)
-
-# Custom filter
-# TODO: delete?
-app.jinja_env.filters["usd"] = usd
 
 
 # Configure session to use filesystem (instead of signed cookies)
