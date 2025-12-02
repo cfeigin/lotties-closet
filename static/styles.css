@@ -144,6 +144,11 @@ footer
     color: white;
 }
 
+.btn-link:hover
+{
+    color: white;
+}
+
 /* Size for brand */
 nav .navbar-brand
 {
@@ -164,3 +169,72 @@ nav .navbar-brand .purple
 {
     background-color: #fcecff;
 }
+
+/* Apology page aesthetics */
+/* Adapted from ChatGPT */
+.error-wrapper {
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-card {
+    background: white;
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    width: 100%;
+    max-width: 450px;
+
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    animation: fadeIn 0.4s ease-out;
+}
+
+.error-icon {
+    margin-bottom: 1.2rem;
+}
+
+.icon-circle {
+    width: 55px;
+    height: 55px;
+    background-color: #460263;
+    border-radius: 50%;
+    opacity: 0.9;
+}
+
+/* Title text */
+.error-title {
+    color: #460263;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+/* Subtext */
+.error-message {
+    color: #6c6c6c;
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1.8rem;
+    line-height: 1.4;
+}
+
+
+/* Fade-in animation */
+/* Taken from ChatGPT */
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(10px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0);
+    }
+}
+

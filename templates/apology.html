@@ -5,7 +5,18 @@
 {% endblock %}
 
 {% block main %}
-    <!-- https://memegen.link/ -->
-    <!-- https://knowyourmeme.com/memes/grumpy-cat -->
-    <img alt="{{ top }}" class="border img-fluid" src="https://api.memegen.link/images/custom/{{ top | urlencode }}/{{ bottom | urlencode }}.jpg?background=https://i.imgur.com/CsCgN7Ll.png&width=400" title="{{ top }}">
+<div class="error-wrapper">
+    <div class="error-card">
+        
+        <div class="error-icon">
+            <div class="icon-circle"></div>
+        </div>
+
+        <h1 class="error-title">{{ top }}</h1>
+        <p class="error-message">{{ bottom }}</p>
+
+        <a href="/" class="btn btn-primary btn-link">Go Home</a>
+    </div>
+</div>
 {% endblock %}
+
