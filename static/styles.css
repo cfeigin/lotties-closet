@@ -200,13 +200,13 @@ nav .navbar-brand .purple
     margin-bottom: 1.2rem;
 }
 
-.icon-circle {
-    width: 55px;
-    height: 55px;
-    background-color: #460263;
-    border-radius: 50%;
-    opacity: 0.9;
+.error-dress-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1.2rem;
+    object-fit: contain;
 }
+
 
 /* Title text */
 .error-title {
