@@ -12,6 +12,7 @@
             <button class="btn btn-primary" type="submit">Search</button>
         </div>
         {% if results %}
+            <h2>Results for "{{ query }}"</h2>
             <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
             {% for item in results %}
             <div class="col">

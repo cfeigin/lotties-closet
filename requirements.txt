@@ -3,3 +3,7 @@ Flask
 Flask-Session
 pytz
 requests
+openai
+serpapi
+google-serp-api
+python-dotenv
