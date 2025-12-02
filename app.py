@@ -48,24 +48,8 @@ def index():
         if not user_query:
             return apology("must provide search query")
 
-        # Create OpenAI client
-        client = OpenAI(api_key=OPEN_API_KEY)
-        # Use AI to refine/clean up user's search query based on their presaved preferences
-        response = client.responses.create(
-            # Use GPT-5-Nano for speed and efficiency
-            model="gpt-5-nano",
-            # User prompt
-            input=f'''Create a succinct and effective search query to find clothing items based on the following user preferences: 
-                    User's search: \'{user_query}\'.
-                    User's preferences/sizing information: {db.execute('SELECT * FROM preferences WHERE user_id = ?', session['user_id'])[0]}. 
-                    Use only keywords and information relevant to the user's search. 
-                    Capture the essence of the user's search, but remove/adjust any extraneous words or fluff.
-                    If the user's preferences/sizes do not relate to the search or are not included, ignore them. You should only be using one size, if any.
-                    The query should be optimized for searching on Google Shopping.''',
-            # System prompt
-            instructions="Limit your response to the query itself. Make it as concise as possible."
-        )
-        refined_query = response.output_text
+       
+        refined_query = user_query
 
         # Use SerpAPI to search Google for clothing items matching refined query
         params = {

@@ -107,7 +107,7 @@ nav .navbar-brand
     font-size: xx-large;
 }
 
-/* Search results cards */
+/* Search results cards aesthetics */
 .card-img-top
 {
     height: 300px;
@@ -115,17 +115,23 @@ nav .navbar-brand
     width: 100%;
 }
 
-.card {
-    padding: 0; 
-}
-
 .card-body {
-    padding: 0.5rem;  
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+} 
+
+.card-title {
+    flex-grow: 1;        /* Makes title area expand evenly */
+    overflow: hidden;    /* Prevents text spillover */
+    max-height: 2.4em;  /* Limits to 2 lines */
+    text-overflow: ellipsis; /* Adds "..." for overflowed text */
 }
 
-.card-footer {
-    padding: 0.4rem;  
-}  
+.card-text {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+} 
 
 /* Colors for brand */
 nav .navbar-brand .blue
