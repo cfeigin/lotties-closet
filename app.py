@@ -202,21 +202,25 @@ def preferences():
             "shoe_gender" : request.form.get("shoe-gender")
         }
 
-        # Santize input - Any field left blank will be stored as None/NULL in preferences database
+        # Santize input - Any field left blank will be stored as NULL in preferences database
 
         if info["gender"]:
             # Check that gender is "male" or "female"
+                # To clarify: if the user wishes to leave this field blank, that is totally fine!
+                # It just won't be stored in the database
             if info["gender"] != "male" and info["gender"] != "female":
                 return apology("invalid gender")   
+            
         if info["height_feet"]:
-            # Check that height_feet is a positive integer
+            # Check that height_feet is a positive integer or 0
+            # (0 feet could be valid for a baby, etc.)
             try:
                 info["height_feet"] = int(info["height_feet"])
                 if info["height_feet"] < 0:
                     return apology("invalid feet")
             except ValueError:
                 return apology("invalid feet")
-            # Default to 0 inches if user only inputs feet TODO: not working
+            # Default to 0 inches if user only inputs feet
             if not info["height_in"]:
                 info["height_in"] = 0
             else: 
@@ -230,13 +234,17 @@ def preferences():
         elif info["height_in"]:
             # If user only inputs inches, assume 0 feet
             info["height_feet"] = 0
-            # Check that inputted height_in is an integer between 0 and 11
+            # Check that inputted height_in is an integer between 0 and 11 (inclusive)
             try: 
                 info["height_in"] = int(info["height_in"])
                 if info["height_in"] < 0 or info["height_in"] > 11:
                     return apology("invalid inches")
             except ValueError:
                 return apology("invalid inches")
+        if info["height_feet"] == 0 and info["height_in"] == 0:
+            # Edge case: if user inputs a height of 0'0", reject it
+            return apology("invalid height")
+            
         if info["weight"]:
             # Check that weight is a positive integer
             try:
@@ -246,7 +254,7 @@ def preferences():
             except ValueError:
                 return apology("invalid weight")
             
-        # All valid sizes
+        # Store all valid sizes
         sizes = ["xxs", "xs", "s", "m", "l", "xl", "xxl"]
         if info["top_size"]:
             # Check that top_size is a valid size
@@ -260,6 +268,7 @@ def preferences():
             # Check that dress_size is a valid size
             if info["dress_size"] not in sizes:
                 return apology("invalid dress size")
+            
         if info["shoe_size"]:
             # Check that shoe_size is a positive multiple of 0.5 & only goes one decimal place
             try:
