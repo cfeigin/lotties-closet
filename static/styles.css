@@ -5,6 +5,15 @@
 body
 {
     background-color: #e9caf0;
+    /* From ChatGPT - ensures sticky footer */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main
+{
+    flex: 1;
 }
 
 h1
@@ -41,6 +50,9 @@ p
 
 footer
 {
+    /* Taken from StackOverflow: https://stackoverflow.com/questions/1488565/how-to-stick-a-footer-to-bottom-in-css */
+    /* Ensures footer sticks to bottom of page */
+    margin-bottom: 0;
     background-color: #460263;
     color: white;
     height: 50px;
