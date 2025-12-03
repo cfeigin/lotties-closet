@@ -6,7 +6,7 @@ from cs50 import SQL
 from flask import Flask, jsonify, redirect, render_template, request, session
 from flask_session import Session
 from openai import OpenAI
-from serpapi.google_search import GoogleSearch
+from serpapi import GoogleSearch
 from werkzeug.security import check_password_hash, generate_password_hash
 # TODO: delete?
 from helpers import apology, login_required

@@ -4,5 +4,4 @@ Flask-Session
 requests
 openai
 serpapi
-google-search-results
 python-dotenv
