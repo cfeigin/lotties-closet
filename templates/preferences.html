@@ -10,62 +10,64 @@
     <form action="/preferences" method="post">
         <div class="questions">
             <select class="form-select bubble" name="gender">
-                <option disabled selected>Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option disabled {% if not info or not info.get("gender") %}selected{% endif %}>Gender</option>
+                <option value="male" {% if info and info.get("gender") == "male" %}selected{% endif %}>Male</option>
+                <option value="female" {% if info and info.get("gender") == "female" %}selected{% endif %}>Female</option>
             </select>
         </div>
         <div class="questions">
-            <input autocomplete="off" class="form-control bubble" min="0" name="height-feet" placeholder="Height (ft)" type="number">
-            <input autocomplete="off" class="form-control bubble" min="0" max="11" name="height-inches" placeholder="Height (in)" type="number">
+            <!-- Need to check info.get("height_feet") and info.get("heigh_in") against None bc they could be 0 (which would register as false)-->
+            <input autocomplete="off" class="form-control bubble" min="0" name="height-feet" placeholder="Height (ft)" type="number" {% if info and info.get("height_feet") is not none %}value="{{ info.get("height_feet") }}"{% endif %}>
+            <input autocomplete="off" class="form-control bubble" min="0" max="11" name="height-inches" placeholder="Height (in)" type="number" {% if info and info.get("height_in") is not none %}value="{{ info.get("height_in") }}"{% endif %}>
         </div>
         <div class="questions">
-            <input autocomplete="off" class="form-control bubble" min="0" name="weight" placeholder="Weight (lb)" type="number">
+            <!-- Since info.get("weight") can't be 0, no need to check against None -->
+            <input autocomplete="off" class="form-control bubble" min="0" name="weight" placeholder="Weight (lb)" type="number" {% if info and info.get("weight") %}value="{{ info.get("weight") }}"{% endif %}>
         </div>
         <div class="questions">
             <select class="form-select bubble" name="top-size">
-                <option disabled selected>Top Size</option>
-                <option value="xxs">XXS</option>
-                <option value="xs">XS</option>
-                <option value="s">S</option>
-                <option value="m">M</option>
-                <option value="l">L</option>
-                <option value="xl">XL</option>
-                <option value="xxl">XXL</option>
+                <option disabled {% if not info or not info.get("top_size") %}selected{% endif %}>Top Size</option>
+                <option value="xxs" {% if info and info.get("top_size") == "xxs" %}selected{% endif %}>XXS</option>
+                <option value="xs" {% if info and info.get("top_size") == "xs" %}selected{% endif %}>XS</option>
+                <option value="s" {% if info and info.get("top_size") == "s" %}selected{% endif %}>S</option>
+                <option value="m" {% if info and info.get("top_size") == "m" %}selected{% endif %}>M</option>
+                <option value="l" {% if info and info.get("top_size") == "l" %}selected{% endif %}>L</option>
+                <option value="xl" {% if info and info.get("top_size") == "xl" %}selected{% endif %}>XL</option>
+                <option value="xxl" {% if info and info.get("top_size") == "xxl" %}selected{% endif %}>XXL</option>
             </select>
         </div>
         <div class="questions">
             <select class="form-select bubble" name="bottom-size">
-                <option disabled selected>Bottom Size</option>
-                <option value="xxs">XXS</option>
-                <option value="xs">XS</option>
-                <option value="s">S</option>
-                <option value="m">M</option>
-                <option value="l">L</option>
-                <option value="xl">XL</option>
-                <option value="xxl">XXL</option>
+                <option disabled {% if not info or not info.get("bottom_size") %}selected{% endif %}>Bottom Size</option>
+                <option value="xxs" {% if info and info.get("bottom_size") == "xxs" %}selected{% endif %}>XXS</option>
+                <option value="xs" {% if info and info.get("bottom_size") == "xs" %}selected{% endif %}>XS</option>
+                <option value="s" {% if info and info.get("bottom_size") == "s" %}selected{% endif %}>S</option>
+                <option value="m" {% if info and info.get("bottom_size") == "m" %}selected{% endif %}>M</option>
+                <option value="l" {% if info and info.get("bottom_size") == "l" %}selected{% endif %}>L</option>
+                <option value="xl" {% if info and info.get("bottom_size") == "xl" %}selected{% endif %}>XL</option>
+                <option value="xxl" {% if info and info.get("bottom_size") == "xxl" %}selected{% endif %}>XXL</option>
             </select>
         </div>
         <div class="questions">
             <select class="form-select bubble" name="dress-size">
-                <option disabled selected>Dress Size (if applicable)</option>
-                <option value="xxs">XXS</option>
-                <option value="xs">XS</option>
-                <option value="s">S</option>
-                <option value="m">M</option>
-                <option value="l">L</option>
-                <option value="xl">XL</option>
-                <option value="xxl">XXL</option>
+                <option disabled {% if not info or not info.get("dress_size") %}selected{% endif %}>Dress Size (if applicable)</option>
+                <option value="xxs" {% if info and info.get("dress_size") == "xxs" %}selected{% endif %}>XXS</option>
+                <option value="xs" {% if info and info.get("dress_size") == "xs" %}selected{% endif %}>XS</option>
+                <option value="s" {% if info and info.get("dress_size") == "s" %}selected{% endif %}>S</option>
+                <option value="m" {% if info and info.get("dress_size") == "m" %}selected{% endif %}>M</option>
+                <option value="l" {% if info and info.get("dress_size") == "l" %}selected{% endif %}>L</option>
+                <option value="xl" {% if info and info.get("dress_size") == "xl" %}selected{% endif %}>XL</option>
+                <option value="xxl" {% if info and info.get("dress_size") == "xxl" %}selected{% endif %}>XXL</option>
             </select>
         </div>
         <!-- TODO: add measurements -->
         <div class="questions">
             <!-- TODO: max shoe size? -->
-            <input autocomplete="off" class="form-control bubble" min="1" step="0.5" name="shoe-size" placeholder="Shoe Size" type="number">
+            <input autocomplete="off" class="form-control bubble" min="1" step="0.5" name="shoe-size" placeholder="Shoe Size" type="number" {% if info and info.get("shoe_size") %}value="{{ info.get("shoe_size") }}"{% endif %}>
             <select class="form-select bubble" name="shoe-gender">
-                <option disabled selected>Gender</option>
-                <option value="mens">Men's</option>
-                <option value="womens">Women's</option>
+                <option disabled {% if not info or not info.get("shoe_gender") %}selected{% endif %}>Gender</option>
+                <option value="mens" {% if info and info.get("shoe_gender") == "mens" %}selected{% endif %}>Men's</option>
+                <option value="womens" {% if info and info.get("shoe_gender") == "womens" %}selected{% endif %}>Women's</option>
             </select>
         </div>
         <button class="btn btn-primary" type="submit">Update Preferences</button>

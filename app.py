@@ -296,15 +296,25 @@ def preferences():
 
         # Update preferences database with existing info
         for key in info:
+            # If field is filled, update that field in the preferences database
             # Need to account for the fact that some fields (e.g. height_in) may be 0 (registered as false by default)
             if info[key] or info[key] == 0:
                 db.execute("UPDATE preferences SET ? = ? WHERE user_id = ?", key, info[key], session["user_id"])
+            # If field is blank, set that field to NULL in the preferences database
+            # Need to do explicitly (rather than let SQL default to NULL) in case user is updating existing info
+            else:
+                db.execute("UPDATE preferences SET ? = NULL WHERE user_id = ?", key, session["user_id"])
 
         return redirect("/")
     
     # Will execute if user navigates to preference form
     else: 
-        return render_template("preferences.html")
+        # Get existing info to pre-fill form if it exists
+        # Info will either be an empty list or a dict with user's existing preferences
+        info = db.execute("SELECT * FROM preferences WHERE user_id = ?", session["user_id"])
+        if info:
+            info = info[0]
+        return render_template("preferences.html", info=info)
     
 @app.route("/history")
 @login_required
