@@ -2,4 +2,5 @@
 scraps.txt
 __pycache__/
 *.pyc
-DS_Store
+flask_session/
+.DS_Store
