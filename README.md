@@ -21,11 +21,15 @@ Navigate into the closet directory via: `cd closet`.
 ### Setup
 1. To ensure that dependencies don't conflict with system Python, create and activat a virtual environment.
     For Linux/MacOS/WSL, run the following commands: 
-        ```python3 -m venv .venv
+        ```
+        python3 -m venv .venv
         source .venv/bin/activate
+        ```
     For Windows PowerShell, run the following commands: 
-        ```python -m venv .venv
+        ```
+        python -m venv .venv
         .\.venv\Scripts\activate
+        ```
     You should now see `(venv)` at the start of your command line prompt. 
 2. To install all required libraries, run the following command: `pip install -r requirements.txt`.
 3. API keys? TODO
