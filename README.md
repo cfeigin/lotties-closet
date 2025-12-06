@@ -19,7 +19,7 @@ OR After downloading closet.zip to your computer, unzip
 Navigate into the closet directory via: `cd closet`.
 
 ### Setup
-1. To ensure that dependencies don't conflict with system Python, create and activat a virtual environment.
+1. To ensure that dependencies don't conflict with system Python, create and activate a virtual environment.
 
     For Linux/MacOS/WSL, run the following commands: 
         
@@ -33,9 +33,27 @@ Navigate into the closet directory via: `cd closet`.
 
     You should now see `(venv)` at the start of your command line prompt. 
 2. To install all required libraries, run the following command: `pip install -r requirements.txt`.
-3. API keys? TODO
+3. Create a file called `.env`. Within the `.env` file, input your OpenAI and SerpAPI keys using exactly the following scheme: 
 
-To launch the application, ensure that you are located in the closet directory. Your command prompt should end in `/closet`. Then, type the following command: `flask run`. Your terminal should provide a link via which to use the application.
+        SERP_API_KEY=...
+        OPEN_API_KEY=...
+
+    Replace the elipses (...) with your respective API keys. Do not enclose the keys in quotation marks and do not include any semicolons in the file. In the end, your `.env` file should only have two lines (see above).
+
+    To protect your API key, create another file called `.gitignore`. In that file, type just the following: 
+
+        .env
+
+    In the end, your `.gitignore` file should only contain the text `.env`. 
+
+    Save and commit these changes via: 
+
+        git add .
+        git commit -m "Program Setup"
+
+### Showtime
+
+To launch the application, ensure that you are located in the closet directory. Your command prompt should end in `/closet`. Then, type the following command: `flask run`. Your terminal should provide a link via which to view the application. 
 
 ## Usage
 When you click the link provided by your terminal, you will be taken to the login page. If you are a returning user, enter your username and password to start searching. If you are a new user, navigate to the "Register" page via the navbar at the top of the page. You will be asked for your name, a desired username, and a password. Though your name and password may take any value, attempting to create an account with a username already in use will result in automatic redirection to an error page. 
