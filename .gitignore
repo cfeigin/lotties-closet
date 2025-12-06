@@ -3,4 +3,5 @@ scraps.txt
 __pycache__/
 *.pyc
 flask_session/
+instance/
 .DS_Store
