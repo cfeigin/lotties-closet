@@ -23,23 +23,19 @@ Navigate into the closet directory via: `cd closet`.
 
     For Linux/MacOS/WSL, run the following commands: 
         
-        ```
         python3 -m venv .venv  
         source .venv/bin/activate
-        ```
 
     For Windows PowerShell, run the following commands: 
         
-        ```
         python -m venv .venv  
         .\.venv\Scripts\activate
-        ```
 
     You should now see `(venv)` at the start of your command line prompt. 
 2. To install all required libraries, run the following command: `pip install -r requirements.txt`.
 3. API keys? TODO
 
-To launch the application, ensure that you are located in the closet directory. Your command prompt should end in /closet. Then, type the following command: `flask run`. Your terminal should provide a link via which to use the application.
+To launch the application, ensure that you are located in the closet directory. Your command prompt should end in `/closet`. Then, type the following command: `flask run`. Your terminal should provide a link via which to use the application.
 
 ## Usage
 When you click the link provided by your terminal, you will be taken to the login page. If you are a returning user, enter your username and password to start searching. If you are a new user, navigate to the "Register" page via the navbar at the top of the page. You will be asked for your name, a desired username, and a password. Though your name and password may take any value, attempting to create an account with a username already in use will result in automatic redirection to an error page. 
