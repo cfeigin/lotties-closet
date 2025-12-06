@@ -14,7 +14,7 @@ Lottie's Closet is a Flask app that stores user data (e.g. username, sizing) in 
 If a user navigates to the home page via a GET request, this function simply renders the home page via `render_template`. Otherwise, if a user makes a search on the home page via POST, `index` will get the user's search via `request.form.get("query")` and get shopping output via OpenAI and SerpAPI as detailed in the "APIs" section below. The shopping data will be sent to `index.html` via the named parameter `results`, along with the user's name, extracted from the `users` table in `closet.db` (also detailed below). 
 
 ### login and logout
-These function are the same as those of the CS50 Finance pset. They require login to access all other routes via the `@login_required` wrapper and clear the Flask session upon logout.  
+These functions are the same as those of the CS50 Finance pset. They require login to access all other routes via the `@login_required` wrapper and clear the Flask session upon logout.  
 
 ### register
 If a user navigates to the register page via a GET request, this function simply renders the registration form via `render_template`. Otherwise, if a user submits a registration form via a POST request, this function will sanitize user input on the backend. If any input is deemed invalid (i.e. missing information or username already in use), `apology.html` will be rendered. If all information is valid, a new `users` entry will be created via `INSERT INTO users (name, username, hash) VALUES ({name}, {username}, {generated password hash})`.
