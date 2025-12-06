@@ -77,8 +77,7 @@ def index():
         # Make AI client request and get results
         try:
             search = GoogleSearch(params)
-            # Limit to first 21 results
-            # TODO: implement pagination and don't hard code 21
+            # Limit to first 21 results (or fewer if less than 21 results returned)
             results = search.get_dict().get("shopping_results", [])
             num_results = len(results)
             if (num_results < 21):
