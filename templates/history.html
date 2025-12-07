@@ -18,6 +18,7 @@
     <div class="info">
         <h3>Height: </h3> 
         <!-- height_ft and height_in will be specified/unspecified together, as per /preferences in app.py -->
+        <!-- check against None because feet could be 0 (false by default) -->
         {% if entry["height_feet"] is not none %}
             {{ entry["height_feet"] }}' {{ entry["height_in"] }}" 
         {% else %}
@@ -26,6 +27,7 @@
     </div>
     <div class="info">
         <h3>Weight: </h3> 
+        <!-- check against None because weight could be 0 (false by default) -->
         {% if entry["weight"] is not none %}
             {{ entry["weight"] }}
         {% else %}

@@ -50,6 +50,8 @@ Navigate into the lotties-closet directory via: `cd lotties-closet`.
 
 To launch the application, ensure that you are located within the lotties-closet directory. Your command prompt should end in `/lotties-closet`. If it doesn't, navigate to the directory via `cd lotties-closet`. Then, type the following command into your terminal: `flask run`. Your terminal should provide a link via which to locally host the application. 
 
+If `flask run` fails, try re-installing Flask via `pip install flask`. Once the download is complete, retry `flask run`.
+
 ## Usage
 When you click the link provided by your terminal, you will be taken to the login page. If you are a returning user, enter your username and password to start searching. If you are a new user, navigate to the "Register" page via the navbar. You will be asked for your name, a desired username, and a password. Though your name and password may take any value, attempting to create an account with a username that is already in use by another user will result in automatic redirection to the error page. 
 

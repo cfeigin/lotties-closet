@@ -18,18 +18,14 @@ main
 
 h1
 {
+    /* Set fallback font to helvetica in case Mouse Memoirs fails to load */
     font-family: 'Mouse Memoirs', helvetica;
     font-size: 4em;
     color: #460263;
     margin: 7vh auto;
 }
 
-h3
-{
-    color: #460263;
-}
-
-h4
+h3, h4
 {
     color: #460263;
 }
@@ -136,10 +132,10 @@ footer
 
 .card-title 
 {
-    flex-grow: 1;        /* Makes title area expand evenly */
-    overflow: hidden;    /* Prevents text spillover */
+    flex-grow: 1;     
+    overflow: hidden;  
     max-height: 2.4em;  /* Limits to 2 lines */
-    text-overflow: ellipsis; /* Adds "..." for overflowed text */
+    text-overflow: ellipsis; 
 }
 
 .card-text 
@@ -162,13 +158,13 @@ footer
     color: white;
 }
 
-/* Size for brand */
+/* Navbar aesthetics */
+/* Taken from CS50 Finance */
 nav .navbar-brand
 {
     font-size: xx-large;
 }
 
-/* Colors for brand */
 nav .navbar-brand .blue
 {
     color: #537fbe;
