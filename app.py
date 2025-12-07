@@ -13,7 +13,6 @@ from helpers import apology, login_required
 # Configure application
 app = Flask(__name__)
 
-
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -22,7 +21,7 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///closet.db")
 
-# Save API key as environment variable
+# Save API keys as environment variables
 SERP_API_KEY = os.getenv("SERP_API_KEY")
 OPEN_API_KEY = os.getenv("OPEN_API_KEY")
 
@@ -49,7 +48,7 @@ def index():
 
         # Create OpenAI client
         client = OpenAI(api_key=OPEN_API_KEY)
-        # Use AI to refine/clean up user's search query based on their presaved preferences
+        # Use client to refine/clean up user's search query based on their presaved preferences
         response = client.responses.create(
             # Use GPT-5-Nano for speed and efficiency
             model="gpt-5-nano",
@@ -64,33 +63,38 @@ def index():
             # System prompt
             instructions="Limit your response to the query itself. Make it as concise as possible."
         )
+        # Save output
         refined_query = response.output_text.strip()
 
-        # Use SerpAPI to search Google for clothing items matching refined query
+        # Create input for SerpAPI to search Google Shopping
         params = {
             # Scrape Google Shopping for results
             "engine": "google_shopping",
+            # Use refined query for best results
             "q": refined_query,
             "api_key": SERP_API_KEY
         }
 
-        # Make AI client request and get results
         try:
+            # Make AI client request with params and get shopping results
             search = GoogleSearch(params)
-            # Limit to first 21 results (or fewer if less than 21 results returned)
             results = search.get_dict().get("shopping_results", [])
+            # Apologize if no results found
+            if not results:
+                return apology("no results found")
+            # Otherwise, limit to first 21 results (or fewer if fewer than 21 results returned)
             num_results = len(results)
             if (num_results < 21):
                 results = results[:num_results]
             else: 
                 results = results[:21]
-        # Handle any errors that may arise
+        # Handle any errors that may arise (i.e. SerpAPI downtime, invalid API key, etc.)
         except Exception as e:
             apology("error fetching results")
 
+        # Render index.html with results
         return render_template("index.html", name=db.execute("SELECT name FROM users WHERE id = ?", session["user_id"])[0]["name"], query=refined_query, results=results)
-
-
+    
     # Will run is user navigates to home page
     else:
         return render_template("index.html", name=db.execute("SELECT name FROM users WHERE id = ?", session["user_id"])[0]["name"], results=None)
@@ -185,7 +189,7 @@ def register():
 @app.route("/preferences", methods=["GET", "POST"])
 @login_required
 def preferences():
-    """Get user's sizing / preference information"""
+    """Get user's sizing preferences"""
     # Will execute if user submits preference form
     if request.method == "POST":
         # Get info from sizing form
@@ -201,7 +205,7 @@ def preferences():
             "shoe_gender" : request.form.get("shoe-gender")
         }
 
-        # Santize input - Any field left blank will be stored as NULL in preferences database
+        # Santize input for all fields not left blank
 
         if info["gender"]:
             # Check that gender is "male" or "female"
@@ -209,7 +213,7 @@ def preferences():
                 # It just won't be stored in the database
             if info["gender"] != "male" and info["gender"] != "female":
                 return apology("invalid gender")   
-            
+   
         if info["height_feet"]:
             # Check that height_feet is a positive integer or 0
             # (0 feet could be valid for a baby, etc.)
@@ -223,13 +227,14 @@ def preferences():
             if not info["height_in"]:
                 info["height_in"] = 0
             else: 
-                # Check that inputted height_in is an integer between 0 and 11
+                # If user did input inches, check that input is an integer between 0 and 11
                 try:
                     info["height_in"] = int(info["height_in"])
                     if info["height_in"] < 0 or info["height_in"] > 11:
                         return apology("invalid inches")
                 except ValueError:
                     return apology("invalid inches")
+        # Will execute if user only inputs inches
         elif info["height_in"]:
             # If user only inputs inches, assume 0 feet
             info["height_feet"] = 0
@@ -278,6 +283,7 @@ def preferences():
                 return apology("invalid shoe size")
             # Check that user also inputted shoe gender
             if not info["shoe_gender"]:
+                # Apologize instead of defaulting to a value, since shoe gender is hard to assume
                 return apology("missing shoe gender")
             # Check that shoe gender is valid
             if info["shoe_gender"] != "mens" and info["shoe_gender"] != "womens":
@@ -286,14 +292,14 @@ def preferences():
             # If user only inputs shoe gender, require that they also input shoe size
             return apology("missing shoe size")
 
-        # Create preferences table entry for this user if it doesn't already exist
+        # Create preferences table entry for this user if it doesn't already exist (i.e. first time user is submitting preferences)
         try:
             db.execute("INSERT INTO preferences (user_id) VALUES (?)", session["user_id"])
         # Continue if entry already exists
         except ValueError:
             pass
 
-        # Update preferences database with existing info
+        # Update preferences database with sanitized info
         for key in info:
             # If field is filled, update that field in the preferences database
             # Need to account for the fact that some fields (e.g. height_in) may be 0 (registered as false by default)
@@ -308,7 +314,7 @@ def preferences():
     
     # Will execute if user navigates to preference form
     else: 
-        # Get existing info to pre-fill form if it exists
+        # Get existing info if it exists to pre-fill form
         # Info will either be an empty list or a dict with user's existing preferences
         info = db.execute("SELECT * FROM preferences WHERE user_id = ?", session["user_id"])
         if info:
@@ -318,6 +324,9 @@ def preferences():
 @app.route("/history")
 @login_required
 def history():
+    """Display user's sizing preferences"""
+    # Get user's name and preferences from database
     name = db.execute("SELECT name FROM users WHERE id = ?", session["user_id"])[0]["name"]
     entry = db.execute("SELECT * FROM preferences WHERE user_id = ?", session["user_id"])[0]
+    # Render history.html with preferences
     return render_template("history.html", name=name, entry=entry)
