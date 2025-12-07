@@ -29,7 +29,7 @@ Navigate into the lotties-closet directory via: `cd lotties-closet`.
         python -m venv .venv  
         .\.venv\Scripts\activate
 
-    If the above fails, you may need to install `venv`. Do so via the following terminal command: `sudo apt install python3-venv`. Once `venv` is installed, follow the above steps again to creat and activate your virtual environment.
+    If the above fails, you may need to install `venv`. Do so via the following terminal command: `sudo apt install python3-venv`. Once `venv` is installed, follow the above steps again to create and activate your virtual environment.
 
     You should now see `(venv)` at the start of your command line prompt. 
 2. To install all required libraries, run the following command: `pip install -r requirements.txt`.
