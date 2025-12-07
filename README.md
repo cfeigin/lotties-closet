@@ -57,5 +57,8 @@ Once your account is created, you will be taken to the user preferences form, wh
 
 On the home page, you may enter any natural language search query into the search bar. Example input is provided. After clicking the "Search" button, you will be able to see the optimized query that Lottie used, as well as relevant Google Shopping results in a grid layout. Clicking "View Item" under any shopping result will open the Google Shopping page for that item in a new tab. 
 
+## Video link
+[Lottie's Closet](https://youtu.be/amFU1PGC7Zo)
+
 Happy shopping! 
 
