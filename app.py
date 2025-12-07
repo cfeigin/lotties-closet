@@ -274,11 +274,12 @@ def preferences():
                 return apology("invalid dress size")
             
         if info["shoe_size"]:
-            # Check that shoe_size is a positive multiple of 0.5 & only goes one decimal place
+            # Check that shoe_size is a positive multiple of 0.5 between 1 and 20 & only goes one decimal place
             try:
                 info["shoe_size"] = float(info["shoe_size"])
-                if info["shoe_size"] < 1 or (info["shoe_size"] * 2) % 1 != 0 or round(info["shoe_size"], 1) != info["shoe_size"]:
+                if info["shoe_size"] < 1 or info["shoe_size"] > 20 or (info["shoe_size"] * 2) % 1 != 0:
                     return apology("invalid shoe size")
+                info["shoe_size"] = round(info["shoe_size"], 1)
             except ValueError:
                 return apology("invalid shoe size")
             # Check that user also inputted shoe gender
